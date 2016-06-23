@@ -2,6 +2,7 @@
 var number = [];
 var result = [];
 var parsedNum = [];
+var tens = [];
 var numerals = ["I", "V", "X", "L", "C", "D", "M"];
 
 var translate = function(number, min, max, symbolIndex) {
@@ -29,12 +30,19 @@ var translate = function(number, min, max, symbolIndex) {
 
 var convert = function(number) {
   result = [];
-  if (number.length > 1) {
+  if (number.length === 4) {
+    translate(number[0], 0, 9, 7);
+    translate(number[1], 0, 9, 5);
+    translate(number[2], 0, 9, 3);
+    translate(number[3], 0, 9, 1);
+  } else if (number.length === 3) {
+    translate(number[0], 0, 9, 5);
+    translate(number[1], 0, 9, 3);
+    translate(number[2], 0, 9, 1);
+  } else if (number.length === 2) {
     translate(number[0], 0, 9, 3);
-    console.log(result);
-    //need to join the result so it isn't overriden
     translate(number[1], 0, 9, 1);
-    console.log(result);
+
   } else if (number.length === 1) {
     translate(number[0], 0, 9, 1);
   }
